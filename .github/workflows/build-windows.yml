@@ -34,8 +34,6 @@ jobs:
       shell: bash
       run: |
         TAG_NAME="${GITHUB_REF#refs/tags/}"
-        echo "${GITHUB_TOKEN}" | gh auth login --with-token
-        gh auth status
         gh release delete "$TAG_NAME" --yes 2>/dev/null || true
         gh release create "$TAG_NAME" ./dist/SalesOrderAnalyzer.exe --title "Release $TAG_NAME"
       env:
